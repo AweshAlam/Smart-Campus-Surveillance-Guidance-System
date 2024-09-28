@@ -35,6 +35,7 @@ public class EmployeeService {
 	public Employee updateEmployee(Employee employee,Long emp_id) {
 		if(employeeRepo.existsById(emp_id)) {
 			employee.setEmp_id(emp_id);
+			employee.setPassword(passwordEncoder.encode(employee.getPassword()));
 			return employeeRepo.save(employee);
 		}
 		return null;

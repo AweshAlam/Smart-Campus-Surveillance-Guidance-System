@@ -34,6 +34,7 @@ public class StudentService {
 	public Student updateStudent(Student student,Long reg_no) {
 		if(studentRepo.existsById(reg_no)) {
 			student.setReg_no(reg_no);
+	    	student.setPassword(passwordEncoder.encode(student.getPassword()));
 			return studentRepo.save(student);
 		}
 		return null;
