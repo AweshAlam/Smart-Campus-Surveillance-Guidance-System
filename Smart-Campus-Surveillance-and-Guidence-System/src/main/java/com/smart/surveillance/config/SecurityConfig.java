@@ -50,22 +50,19 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
+        http.csrf().and()
             .authorizeHttpRequests((requests) -> requests
-                .requestMatchers(new AntPathRequestMatcher("/user")).permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/newuser")).permitAll()
+                .requestMatchers("/employee/register").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
             )
-            .httpBasic(); // Enables basic authentication
+            .formLogin() // Use form-based authentication
+                .defaultSuccessUrl("/admin/home", true)
+            .and()
+            .httpBasic(); // Enable basic authentication
 
         return http.build();
     }
-//    public void securityFilterChain(HttpSecurity http) throws Exception{
-//    	http.authorizeRequests()
-//    			.anyRequest().authenticated()
-//    			.and().oauth2Login();
-//    	
-//    }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
