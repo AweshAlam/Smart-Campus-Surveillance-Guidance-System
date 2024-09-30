@@ -52,14 +52,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().and()
             .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/employee/register").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/employee/**").hasRole("EMPLOYEE")
+                .requestMatchers("/student/**").hasRole("STUDENT")
                 .anyRequest().authenticated()
             )
-            .formLogin() // Use form-based authentication
-                .defaultSuccessUrl("/admin/home", true)
+            .formLogin()
             .and()
-            .httpBasic(); // Enable basic authentication
+            .httpBasic();
 
         return http.build();
     }
