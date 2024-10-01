@@ -1,13 +1,9 @@
 package com.smart.surveillance.controller;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,40 +12,38 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.smart.surveillance.model.Employee;
-import com.smart.surveillance.service.EmployeeService;
+import com.smart.surveillance.model.Student;
+import com.smart.surveillance.service.StudentService;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("admin")
 public class MainController {
 	@Autowired
-	private EmployeeService employeeService;
+	private StudentService studentService;
 	
-	@GetMapping("/employees")
-	public List<Employee> getAllEmployee(){
-		return employeeService.getEmployeeList();
+	@GetMapping("/students")
+	public List<Student> getStudentList(){
+		return studentService.getStudentList();
 	}
 	
-	@PostMapping("/employee/register")
-	public Employee saveEmployee(@RequestBody Employee employee ) {
-		return employeeService.saveEmployee(employee);
+	@PostMapping("/student/register")
+	public Student saveStudent(@RequestBody Student student) {
+		return studentService.saveStudent(student);
 	}
 	
-	@GetMapping("/employee/{emp_id}")
-	public Employee getEmployee(@PathVariable Long emp_id) {
-		return employeeService.getEmployee(emp_id);
+	@GetMapping("/student/{reg_no}")
+	public Optional<Student> getStudent(@PathVariable Long reg_no) {
+		return studentService.getStudent(reg_no);
 	}
 	
-	@PutMapping("/employee/{emp_id}")
-	public Employee updateEmployee(@RequestBody Employee employee,@PathVariable Long emp_id) {
-		return employeeService.updateEmployee(employee, emp_id);
+	@PutMapping("/student/{reg_no}")
+	public Student updateStudent(@RequestBody Student student,@PathVariable Long reg_no) {
+		return studentService.updateStudent(student,reg_no);
 	}
 	
-	@DeleteMapping("/employee/{emp_id}")
-	public void deleteEmployee(@PathVariable Long emp_id) {
-		employeeService.deleteEmployee(emp_id);
+	@DeleteMapping("/student/{reg_no}")
+	public void deleteStudent(@PathVariable Long reg_no) {
+		studentService.deleteStudent(reg_no);
 	}
-	
 }
