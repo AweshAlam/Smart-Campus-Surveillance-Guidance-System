@@ -20,7 +20,7 @@ public class StudentService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+  //  @PreAuthorize("hasAnyRole('ADMIN')")
     public List<Student> getStudentList() {
         return studentRepo.findAll();
     }
@@ -31,13 +31,13 @@ public class StudentService {
         return studentRepo.save(student);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+//    @PreAuthorize("hasAnyRole('ADMIN')")
     public Optional<Student> getStudent(Long reg_no) {
         // Use findById, which returns an Optional
         return studentRepo.findById(reg_no);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+//    @PreAuthorize("hasAnyRole('ADMIN')")
     public Student updateStudent(Student student, Long reg_no) {
         Optional<Student> existingStudent = studentRepo.findById(reg_no);
         if (existingStudent.isPresent()) {
@@ -57,7 +57,7 @@ public class StudentService {
         return null;
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+//    @PreAuthorize("hasAnyRole('ADMIN')")
     public void deleteStudent(Long reg_no) {
         studentRepo.deleteById(reg_no);
     }
