@@ -27,7 +27,10 @@ public class StudentService {
     
     @PreAuthorize("hasAnyRole('ADMIN')")
     public Student saveStudent(Student student) {
-        student.setPassword(passwordEncoder.encode(student.getPassword()));
+    	String defaultPassword = "12345";
+    	String encodedPassword = passwordEncoder.encode(defaultPassword);
+        student.setPassword(encodedPassword);
+        student.setUsername(student.getEmail());
         return studentRepo.save(student);
     }
 
@@ -45,8 +48,7 @@ public class StudentService {
             stuToUpdate.setS_name(student.getS_name());
             stuToUpdate.setEmail(student.getEmail());
             stuToUpdate.setMob_no(student.getMob_no());
-            stuToUpdate.setUsername(student.getUsername());
-
+            
             if (!student.getPassword().isEmpty()) {
                 stuToUpdate.setPassword(passwordEncoder.encode(student.getPassword()));
             }

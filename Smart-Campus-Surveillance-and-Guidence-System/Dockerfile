@@ -1,14 +1,15 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:17-jdk-alpine
+#
+# Build stage
+#
+FROM maven:3.8.3-openjdk-17 AS build
+COPY . .
+RUN mvn clean package -Pprod -DskipTests
 
-# Set the working directory inside the container
-WORKDIR /app
-
-# Copy the built JAR file from your target directory to the container
-COPY target/Smart-Campus-Surveillance-and-Guidence-System-0.0.1-SNAPSHOT.jar /app/Smart-Campus-Surveillance-and-Guidence-System-0.0.1-SNAPSHOT.jar
-
-# Expose the port that your Spring Boot application runs on
+#
+# Package stage
+#
+FROM openjdk:17.0.1-jdk-slim
+COPY --from=build /target/Smart-Campus-Surveillance-and-Guidence-System-0.0.1-SNAPSHOT.jar Smart-Campus-Surveillance-and-Guidence-System.jar
+# ENV PORT=8080
 EXPOSE 8080
-
-# Run the Spring Boot application
-ENTRYPOINT ["java", "-jar", "/app/Smart-Campus-Surveillance-and-Guidence-System-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","Smart-Campus-Surveillance-and-Guidence-System.jar"]
