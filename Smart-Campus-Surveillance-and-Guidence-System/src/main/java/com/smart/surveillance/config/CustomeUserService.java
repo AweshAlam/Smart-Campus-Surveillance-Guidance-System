@@ -12,20 +12,20 @@ import com.smart.surveillance.repository.StudentRepo;
 
 public class CustomeUserService implements UserDetailsService {
 	@Autowired
-	private StudentRepo studentrepo;
+	private StudentRepo studentRepo;
 	
 	@Autowired
-	private AdminRepo adminrepo;
+	private AdminRepo adminRepo;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		  Student student = studentrepo.findByUsername(username);
+		  Student student = studentRepo.findByUsername(username);
 	        if (student != null) {
 	           
 	            return new CustomeUser(student, "ROLE_STUDENT");
 	        }
 	        
-	        Admin admin = adminrepo.findByUsername(username);
+	        Admin admin = adminRepo.findByUsername(username);
 	        if (admin != null) {
 	           
 	            return new CustomeUser(admin, "ROLE_ADMIN");

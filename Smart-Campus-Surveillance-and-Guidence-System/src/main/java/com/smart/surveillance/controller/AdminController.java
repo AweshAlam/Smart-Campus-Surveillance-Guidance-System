@@ -13,14 +13,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smart.surveillance.model.Admin;
 import com.smart.surveillance.model.Student;
+import com.smart.surveillance.service.AdminService;
 import com.smart.surveillance.service.StudentService;
 
 @RestController
-@RequestMapping("admin")
-public class MainController {
+@RequestMapping("/admin")
+public class AdminController {
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
+	private AdminService adminService;
+	
+	@PostMapping("/register")
+	public Admin saveAdmin(@RequestBody Admin admin) {
+		return adminService.saveAdmin(admin);
+	}
+	
+	@PutMapping("/update")
+	public Admin updateAdmin(@RequestBody Admin admin,@PathVariable Long id) {
+		return adminService.updateAdmin(admin,id);
+	}
 	
 	@GetMapping("/students")
 	public List<Student> getStudentList(){

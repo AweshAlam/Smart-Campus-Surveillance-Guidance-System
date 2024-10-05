@@ -44,8 +44,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
             .authorizeHttpRequests((requests) -> requests
-//                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/admin/**").hasRole("STUDENT")
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/student/**").hasRole("STUDENT")
                 .anyRequest().authenticated()
             )
             .formLogin()
