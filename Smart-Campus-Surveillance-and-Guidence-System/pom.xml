@@ -59,6 +59,40 @@
     <artifactId>tomcat-jasper</artifactId>
     <version>10.1.26</version>
 </dependency>
+ <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-api</artifactId>
+    <version>0.11.5</version>
+</dependency>
+
+
+     <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl -->
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-impl</artifactId>
+    <version>0.11.5</version>
+    <scope>runtime</scope>
+</dependency>
+
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
+    <version>0.11.5</version>
+    <scope>runtime</scope>
+</dependency>
+
+
+
+
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    
+    <scope>provided</scope>
+</dependency>
+
+
 <!-- https://mvnrepository.com/artifact/javax.servlet/jsp-api -->
 <dependency>
     <groupId>javax.servlet</groupId>
@@ -66,6 +100,11 @@
     <version>2.0</version>
     <scope>provided</scope>
 </dependency>
+		<dependency>
+			<groupId>com.login</groupId>
+			<artifactId>loginPage</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

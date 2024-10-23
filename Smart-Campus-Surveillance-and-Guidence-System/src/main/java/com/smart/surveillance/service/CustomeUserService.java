@@ -1,15 +1,17 @@
-package com.smart.surveillance.config;
+package com.smart.surveillance.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
+import com.smart.surveillance.config.CustomeUser;
 import com.smart.surveillance.model.Admin;
 import com.smart.surveillance.model.Student;
 import com.smart.surveillance.repository.AdminRepo;
 import com.smart.surveillance.repository.StudentRepo;
-
+@Service 
 public class CustomeUserService implements UserDetailsService {
 	@Autowired
 	private StudentRepo studentRepo;
