@@ -35,12 +35,12 @@ public class StudentService {
     }
 
 //    @PreAuthorize("hasAnyRole('ADMIN')")
-    public Optional<Student> getStudent(Long reg_no) {
+    public Optional<Student> getStudent(String reg_no) {
         return studentRepo.findById(reg_no);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public Student updateStudent(Student student, Long reg_no) {
+    public Student updateStudent(Student student, String reg_no) {
         Optional<Student> existingStudent = studentRepo.findById(reg_no);
         if (existingStudent.isPresent()) {
             Student stuToUpdate = existingStudent.get();
@@ -58,7 +58,7 @@ public class StudentService {
         return null;
     }
     
-    public Student updatePassword(Student student, Long reg_no) {
+    public Student updatePassword(Student student, String reg_no) {
         Optional<Student> existingStudent = studentRepo.findById(reg_no);
         if (existingStudent.isPresent()) {
             Student stuToUpdate = existingStudent.get();
@@ -72,7 +72,7 @@ public class StudentService {
     }
 
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public void deleteStudent(Long reg_no) {
+    public void deleteStudent(String reg_no) {
         studentRepo.deleteById(reg_no);
     }
 }

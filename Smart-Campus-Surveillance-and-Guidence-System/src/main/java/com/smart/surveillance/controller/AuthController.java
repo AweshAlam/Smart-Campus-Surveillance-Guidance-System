@@ -8,6 +8,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,7 @@ import lombok.Builder;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = " http://localhost:4200")
 public class AuthController {
 
 	 @Autowired
@@ -33,7 +35,8 @@ public class AuthController {
 
 	    @Autowired
 	    private JwtHelper jwtHelper;
-
+	    
+	    @CrossOrigin(origins = "http://localhost:4200")
 	    @PostMapping("/login")
 	    public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest request) {
 	        authenticate(request.getUsername(), request.getPassword());

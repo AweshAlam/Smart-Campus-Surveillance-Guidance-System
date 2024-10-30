@@ -20,12 +20,12 @@ public class StudentController {
 	private StudentService studentService;
 	
 	@GetMapping("/{reg_no}")
-	public Optional<Student> getStudent(@PathVariable Long reg_no) {
+	public Optional<Student> getStudent(@PathVariable String reg_no) {
 		return studentService.getStudent(reg_no);
 	}
 	
 	@PutMapping("/update/{reg_no}")
-	public Student updateStudent(@RequestBody Student student,@PathVariable Long reg_no) {
+	public Student updateStudent(@RequestBody Student student,@PathVariable String reg_no) {
 		return studentService.updatePassword(student,reg_no);
 	}
 }

@@ -27,7 +27,7 @@ import com.smart.surveillance.service.CustomeUserService;
 public class SecurityConfig {
 	
 	@Autowired
-	private UserDetailsService userDetailsService;
+	private CustomeUserService userDetailsService;
 	@Autowired
 	 private JwtAuthenticationEntryPoint point;
 	
