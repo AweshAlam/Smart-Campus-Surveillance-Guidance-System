@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Student {
 
     @Id
-    private Long reg_no;
+    private String reg_no;
     private String s_name;
     private String email;
     private String mob_no;
@@ -34,11 +34,11 @@ public class Student {
 		this.classSchedule = classSchedule;
 	}
 
-    public Long getReg_no() {
+    public String getReg_no() {
         return reg_no;
     }
 
-    public void setReg_no(Long reg_no) {
+    public void setReg_no(String reg_no) {
         this.reg_no = reg_no;
     }
 
@@ -75,7 +75,7 @@ public class Student {
         this.password = password;
     }
 
-	public Student(Long reg_no, String s_name, String email, String mob_no, String username, String password,
+	public Student(String reg_no, String s_name, String email, String mob_no, String username, String password,
 			ClassSchedule classSchedule) {
 		super();
 		this.reg_no = reg_no;
