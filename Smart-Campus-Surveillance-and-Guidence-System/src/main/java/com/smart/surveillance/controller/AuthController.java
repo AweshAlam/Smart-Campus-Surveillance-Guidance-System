@@ -19,8 +19,6 @@ import com.smart.surveillance.Security.JwtHelper;
 import com.smart.surveillance.model.JwtRequest;
 import com.smart.surveillance.model.JwtResponse;
 
-import ch.qos.logback.classic.Logger;
-import lombok.Builder;
 
 @RestController
 @RequestMapping("/auth")
