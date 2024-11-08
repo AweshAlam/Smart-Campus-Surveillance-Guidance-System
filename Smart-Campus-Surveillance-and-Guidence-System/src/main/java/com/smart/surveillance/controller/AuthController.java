@@ -21,7 +21,7 @@ import com.smart.surveillance.model.JwtResponse;
 
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/login")
 @CrossOrigin(origins = " http://localhost:4200")
 public class AuthController {
 
@@ -35,7 +35,7 @@ public class AuthController {
 	    private JwtHelper jwtHelper;
 	    
 	    @CrossOrigin(origins = "http://localhost:4200")
-	    @PostMapping("/login")
+	    @PostMapping
 	    public ResponseEntity<JwtResponse> login(@RequestBody JwtRequest request) {
 	        authenticate(request.getUsername(), request.getPassword());
 

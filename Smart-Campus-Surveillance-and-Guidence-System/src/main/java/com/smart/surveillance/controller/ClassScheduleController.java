@@ -17,13 +17,13 @@ public class ClassScheduleController {
     @Autowired
     private ClassScheduleService classScheduleService;
 
-    @GetMapping
+    @GetMapping("/schedules")
     public List<ClassSchedule> getAllSchedules() {
         return classScheduleService.getAllSchedules();
     }
 
     @GetMapping("/schedule/{id}")
-    public Optional<ClassSchedule> getSchedulesBySection(@PathVariable Long id) {
+    public Optional<ClassSchedule> getSchedulesBySection(@PathVariable String id) {
         return classScheduleService.getSchedulesBySection(id);
     }
 
@@ -33,13 +33,13 @@ public class ClassScheduleController {
     }
 
     @PutMapping("/schedule/{id}")
-    public ResponseEntity<ClassSchedule> updateClassSchedule(@PathVariable Long id, @RequestBody ClassSchedule updatedSchedule) {
+    public ResponseEntity<ClassSchedule> updateClassSchedule(@PathVariable String id, @RequestBody ClassSchedule updatedSchedule) {
         ClassSchedule schedule = classScheduleService.updateClassSchedule(id, updatedSchedule);
         return ResponseEntity.ok(schedule);
     }
 
     @DeleteMapping("/schedule/{id}")
-    public ResponseEntity<Void> deleteClassSchedule(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteClassSchedule(@PathVariable String id) {
         classScheduleService.deleteClassSchedule(id);
         return ResponseEntity.noContent().build();
     }

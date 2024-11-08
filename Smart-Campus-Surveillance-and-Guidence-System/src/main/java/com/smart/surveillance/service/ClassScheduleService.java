@@ -19,7 +19,7 @@ public class ClassScheduleService {
         return classScheduleRepo.findAll();
     }
 
-    public Optional<ClassSchedule> getSchedulesBySection(Long id) {
+    public Optional<ClassSchedule> getSchedulesBySection(String id) {
         return classScheduleRepo.findById(id);
     }
 
@@ -27,16 +27,16 @@ public class ClassScheduleService {
         return classScheduleRepo.save(classSchedule);
     }
 
-    public ClassSchedule updateClassSchedule(Long id, ClassSchedule updatedSchedule) {
+    public ClassSchedule updateClassSchedule(String id, ClassSchedule updatedSchedule) {
         ClassSchedule existingSchedule = classScheduleRepo.findById(id).orElseThrow(() -> new RuntimeException("Schedule not found"));
-        existingSchedule.setSec(updatedSchedule.getSec());
         existingSchedule.setSubject(updatedSchedule.getSubject());
         existingSchedule.setDay(updatedSchedule.getDay());
-        existingSchedule.setTime(updatedSchedule.getTime());
+        existingSchedule.setStartTime(updatedSchedule.getStartTime());
+        existingSchedule.setEndTime(updatedSchedule.getEndTime());
         return classScheduleRepo.save(existingSchedule);
     }
 
-    public void deleteClassSchedule(Long id) {
+    public void deleteClassSchedule(String id) {
         classScheduleRepo.deleteById(id);
     }
 }
