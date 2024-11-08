@@ -87,7 +87,7 @@ public class SecurityConfig implements WebMvcConfigurer {
     	   
            .csrf(csrf -> csrf.disable())
            .authorizeHttpRequests(authz -> authz
-               .requestMatchers("/auth/login").permitAll() // allow login without authentication
+               .requestMatchers("/login").permitAll() // allow login without authentication
                .requestMatchers("/admin/**").hasRole("ADMIN")
                .requestMatchers("/student/**").hasRole("STUDENT")
                .anyRequest().authenticated() // other requests must be authenticated

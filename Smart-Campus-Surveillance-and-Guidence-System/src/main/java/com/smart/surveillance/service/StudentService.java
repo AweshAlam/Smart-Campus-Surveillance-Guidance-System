@@ -30,7 +30,7 @@ public class StudentService {
     	String defaultPassword = "12345";
     	String encodedPassword = passwordEncoder.encode(defaultPassword);
         student.setPassword(encodedPassword);
-        student.setUsername(student.getEmail());
+        student.setUsername(student.getReg_no());
         return studentRepo.save(student);
     }
 
@@ -39,7 +39,7 @@ public class StudentService {
         return studentRepo.findById(reg_no);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')")
+//    @PreAuthorize("hasAnyRole('ADMIN')")
     public Student updateStudent(Student student, String reg_no) {
         Optional<Student> existingStudent = studentRepo.findById(reg_no);
         if (existingStudent.isPresent()) {

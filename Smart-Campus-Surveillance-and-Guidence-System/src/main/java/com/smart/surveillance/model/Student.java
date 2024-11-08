@@ -1,5 +1,7 @@
 package com.smart.surveillance.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,11 +14,13 @@ public class Student {
     private String s_name;
     private String email;
     private String mob_no;
+//    private String photoUrl;
+    private List<ClassSchedule> schedules;
     private String username;
     private String password;
     
-	@DBRef
-    private ClassSchedule classSchedule;
+//	@DBRef
+//    private ClassSchedule classSchedule;
 	
     public String getUsername() {
 		return username;
@@ -26,20 +30,29 @@ public class Student {
 		this.username = username;
 	}
 
-	public ClassSchedule getClassSchedule() {
-		return classSchedule;
-	}
+//	public ClassSchedule getClassSchedule() {
+//		return classSchedule;
+//	}
+//
+//	public void setClassSchedule(ClassSchedule classSchedule) {
+//		this.classSchedule = classSchedule;
+//	}
 
-	public void setClassSchedule(ClassSchedule classSchedule) {
-		this.classSchedule = classSchedule;
-	}
+	public List<ClassSchedule> getSchedules() {
+        return schedules;
+    }
 
-    public String getReg_no() {
+    public void setSchedules(List<ClassSchedule> schedules) {
+        this.schedules = schedules;
+    }
+
+	public String getReg_no() {
         return reg_no;
     }
 
     public void setReg_no(String reg_no) {
         this.reg_no = reg_no;
+        this.username = reg_no;
     }
 
     public String getS_name() {
@@ -56,7 +69,6 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
-        this.username = email;
     }
 
     public String getMob_no() {
@@ -75,15 +87,14 @@ public class Student {
         this.password = password;
     }
 
-	public Student(String reg_no, String s_name, String email, String mob_no, String username, String password,
-			ClassSchedule classSchedule) {
+	public Student(String reg_no, String s_name, String email, String mob_no, String username, String password) {
 		super();
 		this.reg_no = reg_no;
 		this.s_name = s_name;
 		this.email = email;
 		this.mob_no = mob_no;
-		this.username = email;
+		this.username = reg_no;
 		this.password = password;
-		this.classSchedule = classSchedule;
+//		this.classSchedule = classSchedule;
 	}
 }

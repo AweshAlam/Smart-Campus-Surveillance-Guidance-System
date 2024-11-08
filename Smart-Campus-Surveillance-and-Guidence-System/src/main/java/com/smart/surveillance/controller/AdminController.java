@@ -46,7 +46,6 @@ public class AdminController {
 		return studentService.getStudentList();
 	}
 	
-//	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/student/register")
 	public Student saveStudent(@RequestBody Student student) {
 		return studentService.saveStudent(student);
