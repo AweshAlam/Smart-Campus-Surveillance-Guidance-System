@@ -35,16 +35,16 @@ public class StudentService {
     }
 
 //    @PreAuthorize("hasAnyRole('ADMIN')")
-    public Optional<Student> getStudent(String reg_no) {
-        return studentRepo.findById(reg_no);
+    public Optional<Student> getStudent(String _id) {
+        return studentRepo.findById(_id);
     }
 
 //    @PreAuthorize("hasAnyRole('ADMIN')")
-    public Student updateStudent(Student student, String reg_no) {
-        Optional<Student> existingStudent = studentRepo.findById(reg_no);
+    public Student updateStudent(Student student, String _id) {
+        Optional<Student> existingStudent = studentRepo.findById(_id);
         if (existingStudent.isPresent()) {
             Student stuToUpdate = existingStudent.get();
-            stuToUpdate.setReg_no(reg_no);
+            stuToUpdate.setReg_no(_id);
             stuToUpdate.setS_name(student.getS_name());
             stuToUpdate.setEmail(student.getEmail());
             stuToUpdate.setMob_no(student.getMob_no());
@@ -58,8 +58,8 @@ public class StudentService {
         return null;
     }
     
-    public Student updatePassword(Student student, String reg_no) {
-        Optional<Student> existingStudent = studentRepo.findById(reg_no);
+    public Student updatePassword(Student student, String _id) {
+        Optional<Student> existingStudent = studentRepo.findById(_id);
         if (existingStudent.isPresent()) {
             Student stuToUpdate = existingStudent.get();
             if (!student.getPassword().isEmpty()) {
@@ -72,7 +72,7 @@ public class StudentService {
     }
 
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public void deleteStudent(String reg_no) {
-        studentRepo.deleteById(reg_no);
+    public void deleteStudent(String _id) {
+        studentRepo.deleteById(_id);
     }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
@@ -23,7 +23,7 @@ import com.smart.surveillance.service.StudentService;
 
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin(origins = " http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AdminController {
 	@Autowired
 	private StudentService studentService;
@@ -51,19 +51,20 @@ public class AdminController {
 		return studentService.saveStudent(student);
 	}
 	
-	@GetMapping("/student/{reg_no}")
-	public Optional<Student> getStudent(@PathVariable String reg_no) {
-		return studentService.getStudent(reg_no);
+	@GetMapping("/student/{_id}")
+	public ResponseEntity<Student> getStudent(@PathVariable String _id) {
+		Optional<Student> student = studentService.getStudent(_id);
+		return student.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
 	}
 	
-	@PutMapping("/student/{reg_no}")
-	public Student updateStudent(@RequestBody Student student,@PathVariable String reg_no) {
-		return studentService.updateStudent(student,reg_no);
+	@PutMapping("/student/{_id}")
+	public Student updateStudent(@RequestBody Student student,@PathVariable String _id) {
+		return studentService.updateStudent(student,_id);
 	}
 	
-	@DeleteMapping("/student/{reg_no}")
-	public void deleteStudent(@PathVariable String reg_no) {
-		studentService.deleteStudent(reg_no);
+	@DeleteMapping("/student/{_id}")
+	public void deleteStudent(@PathVariable String _id) {
+		studentService.deleteStudent(_id);
 	}
 	
 	    

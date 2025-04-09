@@ -22,7 +22,7 @@ import com.smart.surveillance.model.JwtResponse;
 
 @RestController
 @RequestMapping("/login")
-@CrossOrigin(origins = " http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthController {
 
 	 @Autowired
